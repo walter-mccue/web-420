@@ -1,21 +1,15 @@
 {
   "name": "web-420",
+  "author": "Walter McCue",
+  "license": "MIT",
+  "private": "true",
   "version": "1.0.0",
-  "description": "<h1>WEB 420 RESTful APIs</h1>\r <h2>Contributors</h2>\r <ul><li>Richard Krasso</li>\r <li>Walter McCue</li></ul>",
+  "description": "WEB 420 RESTful APIs",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/walter-mccue/web-420.git"
-  },
-  "author": "Walter McCue",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/walter-mccue/web-420/issues"
-  },
-  "homepage": "https://github.com/walter-mccue/web-420#readme",
+
   "dependencies": {
     "bluebird": "^3.7.2",
     "express": "^4.17.1",

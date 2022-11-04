@@ -1,0 +1,74 @@
+# Title: mccue-composers.yaml
+# Author: Walter McCue
+# Date: 11/4/22
+# Description: Assignment 3.2
+
+openapi: "3.0.0"
+info:
+  title: Composer API
+  version: 1.0.0
+
+paths:
+  /composers:
+
+    get:
+      tags:
+        - Composers
+      description: API for returning a list of all composers
+      summary: Returns a list of Composer Documents
+      responses:
+        '200':
+          description: Composer Document
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+
+    post:
+      tags:
+        - Composers
+      description: API for adding new composer objects
+      summary: Creates a new Composer Object
+      requestBody:
+        description: Composer information
+        content:
+          application/json:
+            schema:
+              required:
+                - firstName
+                - lastName
+              properties:
+                  firstName:
+                    description: First name of composer
+                    type: string
+                  lastName:
+                    description: Last name of composer
+                    type: string
+      responses:
+        '200':
+          description: Composer Added
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+
+  /composers/{id}:
+    get:
+      tags:
+        - Composers
+      description: API for returning a single composer object from MongoDB
+      summary: Returns a Composer Document
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The composer ID requested by the user
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Composer object in JSON format
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
