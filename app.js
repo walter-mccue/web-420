@@ -3,7 +3,7 @@
  * Author: Walter McCue
  * Date: 10/20/2022
  * Description: WEB 420 RESTful APIs
- * Resources: WEB-340; WEB-340 GitHub; W3Schools.com; geeksforgeeks.com
+ * Resources: WEB-420; WEB-420 GitHub; W3Schools.com; geeksforgeeks.com
  */
 
 // Require statements
