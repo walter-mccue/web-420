@@ -13,6 +13,7 @@ const swaggerUI = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const mongoose = require('mongoose');
 const composerAPI = require('./routes/mccue-composer-routes');
+const personAPI = require('./routes/mccue-person-routes');
 
 // app variable
 const app = express();
@@ -54,6 +55,7 @@ const openapiSpecification = swaggerJsdoc(options);
 // Sets APIs to use OAS
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(openapiSpecification));
 app.use('/api', composerAPI);
+app.use('/api', personAPI);
 
 // Starts the server and logs the port to launch in browser
 http.createServer(app).listen(PORT, () => {
