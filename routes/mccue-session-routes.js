@@ -16,7 +16,7 @@ const saltRounds = 10;
 /**
  * signup
  * @openapi
- * /api/signup:
+ * /api/users/signup:
  *   post:
  *     tags:
  *       - Users
@@ -48,9 +48,9 @@ const saltRounds = 10;
  *       '501':
  *         description: MongoDB Exception
  */
- router.post('/register', async(req, res) => {
+ router.post('/users/:signup', async(req, res) => {
     try {
-        User.findOne({ userName: req.body.userName }, function(err, user) {
+        User.findOne({ 'userName': req.body.userName }, function(err, user) {
             if (err) {
                 console.log(err);
                 res.status(501).send({
@@ -75,7 +75,7 @@ const saltRounds = 10;
                             res.json(user)
                         }
                     })
-                } else if(user) {
+                } else {
                     res.status(401).send({
                         'message': `MongoDB Exception: ${err}`
                     })
@@ -93,7 +93,7 @@ const saltRounds = 10;
 /**
  * login
  * @openapi
- * /api/login:
+ * /api/users/login:
  *   post:
  *     tags:
  *       - Users
@@ -122,7 +122,7 @@ const saltRounds = 10;
  *       '501':
  *         description: MongoDB Exception
  */
-router.post('/login', async(req, res) => {
+router.post('/users/:login', async(req, res) => {
     try {
         User.findOne({'userName': req.body.userName}, function(err, user) {
             if (err) {
@@ -131,23 +131,16 @@ router.post('/login', async(req, res) => {
                     'message': `MongoDB Exception: ${err}`
                 })
             } else {
-                if (user) {
-                    let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-                    if (passwordIsValid) {
-                        console.log('User Logged In');
-                        res.status(200).send({
-                            'message': 'User Logged In'
-                        })
-                    } else {
-                        console.log('Password is incorrect');
-                        res.status(401).send({
-                            'message': `Invalid password`
-                        })
-                    }
+                let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+                if (passwordIsValid) {
+                    console.log('User Logged In');
+                    res.status(200).send({
+                        'message': 'User Logged In'
+                    })
                 } else {
-                    console.log('Invalid userName or Password');
+                    console.log('Password is incorrect');
                     res.status(401).send({
-                        'message': `Invalid userName or password`
+                        'message': `Invalid password`
                     })
                 }
             }
