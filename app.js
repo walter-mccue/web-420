@@ -16,6 +16,7 @@ const composerAPI = require('./routes/mccue-composer-routes');
 const personAPI = require('./routes/mccue-person-routes');
 const userAPI = require('./routes/mccue-session-routes');
 const customerAPI = require('./routes/mccue-node-shopper-routes');
+const teamAPI = require('./routes/mccue-team-routes');
 
 // app variable
 const app = express();
@@ -60,6 +61,7 @@ app.use('/api', composerAPI);
 app.use('/api', personAPI);
 app.use('/api', userAPI);
 app.use('/api', customerAPI);
+app.use('/api', teamAPI);
 
 // Starts the server and logs the port to launch in browser
 http.createServer(app).listen(PORT, () => {
