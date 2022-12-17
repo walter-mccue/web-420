@@ -63,6 +63,11 @@ app.use('/api', userAPI);
 app.use('/api', customerAPI);
 app.use('/api', teamAPI);
 
+// Route for render
+app.get('*', (req, res) => {
+    res.redirect('https://mccue-web420.onrender.com/api-docs')
+});
+
 // Starts the server and logs the port to launch in browser
 http.createServer(app).listen(PORT, () => {
     console.log('Application started and listening on port ' + PORT)
